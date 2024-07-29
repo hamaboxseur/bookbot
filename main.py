@@ -1,16 +1,18 @@
 def main():
     book_path = ".gitignore/books/frankenstein.txt"
     text = get_book_text(book_path)
-    # print(text)
+    print(f"--- being report of {book_path}---")
     num = count_word(text)
-    print(f"the number word is : {num}")
-    tab = count_lettre(text)
-    print(f"the dictionary is : {tab}")
-
+    print(f"{num} word found in the document")
+    print ()
+    show_dic(text)
+    print(' ')
+    print('--- end of report ---')
 
 def count_word(text):
     tab = text.split()
     return len(tab) 
+
 def count_lettre(text):
     dic = {}
     text = text.lower()
@@ -20,11 +22,16 @@ def count_lettre(text):
         else:
             dic[i]=1
 
-        
     return dic
+
+def show_dic(text):
+    tab = count_lettre(text)
+    for i in sorted(tab):
+        if i.isalpha():
+            print(f"the {i} character was found   {tab[i]} times")
+
 def get_book_text(path):
     with open(path) as f:
         return f.read()
-
-
+    
 main()
